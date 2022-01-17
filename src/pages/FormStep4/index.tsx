@@ -14,16 +14,38 @@ export const FormStep4 = () => {
         });
     }, [])
 
+    const newName = (state.name).split(" ")
+    const onlyName = newName[0]
+
     return (
         <Theme>
             <C.Container>
                 <p>Resultado</p>
-                <h1>Parabéns {state.name} seu cadastro foi recebido</h1>
+                <h1>Parabéns {onlyName} seu cadastro foi recebido</h1>
                 <p>Confira abaixo os seus dados.</p>
 
                 <hr />
 
-                
+                <table>
+                    <tr>
+                        <td><span>Nome:</span></td>
+                        <td>{state.name}</td>
+                    </tr>
+                    <tr>
+                        <td><span>Nível:</span></td>
+                        <td>{state.level === 0 && '👶 Sou iniciante'}
+                            {state.level === 1 && '🤓 Sou programador'}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>E-mail:</span></td>
+                        <td>{state.email}</td>
+                    </tr>
+                    <tr>
+                        <td><span>GitHub:</span></td>
+                        <td>{state.github}</td>
+                    </tr>
+                </table>
 
                 <Link to='/step3' className='backButton'>Voltar</Link>
             </C.Container>

@@ -35,11 +35,14 @@ export const FormStep2 = () => {
         });
     }
 
+    const newName = (state.name).split(" ")
+    const onlyName = newName[0]
+
     return (
         <Theme>
             <C.Container>
                 <p>Passo 2/3</p>
-                    <h1>{state.name}, o que melhor descreve você?</h1>
+                    <h1>{onlyName}, o que melhor descreve você?</h1>
                     <p>Escolha a opção que melhor condiz com o seu nível profissional.</p>
 
                     <hr />

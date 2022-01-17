@@ -21,7 +21,7 @@ export const FormStep3 = () => {
 
     const handleNextStep = () => {
         if(state.email !== '' && state.github !== '') {
-            navigate('step4')
+            navigate('/step4')
         } else {
             alert('Preencha os dados.')
         }
@@ -41,11 +41,14 @@ export const FormStep3 = () => {
         });
     }
 
+    const newName = (state.name).split(" ")
+    const onlyName = newName[0]
+
     return (
         <Theme>
             <C.Container>
                 <p>Passo 3/3</p>
-                <h1>Legal {state.name}, onde te achamos?</h1>
+                <h1>Legal {onlyName}, onde te achamos?</h1>
                 <p>Preencha com os seus dados para conseguirmos entrar em contato.</p>
 
                 <hr />

@@ -60,4 +60,18 @@ export const Container = styled.div`
         padding: 20px 40px;
         color: #B8B8D4;
     }
+
+    table {
+        margin-bottom: 30px;
+    }
+
+    td {
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    span {
+        font-weight: bold;
+        font-size: 16px;
+    }
 `;
