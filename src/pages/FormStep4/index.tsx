@@ -1,17 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as C from './styles';
 import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
 import { useEffect } from 'react'
 
 export const FormStep4 = () => {
+    const navigate = useNavigate();
     const { state, dispatch } = useForm();
 
     useEffect(() => {
-        dispatch({
-            type: FormActions.setCurrentStep,
-            payload: 4
-        });
+        if (state.name === '') {
+            navigate('/');
+        } else {
+            dispatch({
+                type: FormActions.setCurrentStep,
+                payload: 4
+            });
+        }
     }, [])
 
     const newName = (state.name).split(" ")
@@ -25,25 +30,23 @@ export const FormStep4 = () => {
                 <p>Confira abaixo os seus dados.</p>
 
                 <hr />
-
                 <table>
                     <tr>
-                        <td><span>Nome:</span></td>
-                        <td>{state.name}</td>
+                        <th colSpan={2}>
+                            <img src={`http://github.com/${state.github}.png`} alt="Foto perfil Github"/>
+                        </th>
                     </tr>
                     <tr>
-                        <td><span>Nível:</span></td>
-                        <td>{state.level === 0 && '👶 Sou iniciante'}
-                            {state.level === 1 && '🤓 Sou programador'}
+                        <td><span>Nome: </span>{state.name}</td>
+                        <td><span>Nível: </span>
+                            {state.level === 0 && '👶 Sou iniciante'}
+                            {state.level === 1 && '🤓 Sou programador'}</td>
+                        <td>
                         </td>
                     </tr>
                     <tr>
-                        <td><span>E-mail:</span></td>
-                        <td>{state.email}</td>
-                    </tr>
-                    <tr>
-                        <td><span>GitHub:</span></td>
-                        <td>{state.github}</td>
+                        <td><span>E-mail: </span>{state.email}</td>
+                        <td><span>GitHub: </span>github.com/{state.github}</td>
                     </tr>
                 </table>
 
