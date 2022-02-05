@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import * as C from './styles';
 import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
-import { ChangeEvent, useEffect } from 'react'
+import { ChangeEvent, useEffect, KeyboardEvent } from 'react'
 
 export const FormStep1 = () => {
     const navigate = useNavigate();
@@ -14,6 +14,12 @@ export const FormStep1 = () => {
             payload: 1
         });
     }, [])
+
+    const handleEnter = (e: KeyboardEvent) => {
+        if(e.code === 'Enter' && state.name !== '') {
+            navigate('/step2');
+        } 
+    }
 
     const handleNextStep = () => {
         if(state.name !== '') {
@@ -46,6 +52,7 @@ export const FormStep1 = () => {
                         autoFocus
                         value={state.name}
                         onChange={handleNameChange}
+                        onKeyUp={handleEnter}
                     />
                 </label>
 
