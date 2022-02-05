@@ -2,7 +2,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import * as C from './styles';
 import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
-import { ChangeEvent, useEffect } from 'react'
+import { ChangeEvent, useEffect, KeyboardEvent } from 'react'
 
 export const FormStep3 = () => {
     const navigate = useNavigate();
@@ -18,6 +18,12 @@ export const FormStep3 = () => {
             });
         }
     }, [])
+
+    const handleEnter = (e: KeyboardEvent) => {
+        if(e.code === 'Enter' && state.github !== '') {
+            navigate('/step4')
+        } 
+    }
 
     const handleNextStep = () => {
         if(state.email !== '' && state.github !== '') {
@@ -64,11 +70,12 @@ export const FormStep3 = () => {
                 </label>
 
                 <label>
-                    Qual o seu github?
+                    Qual o seu usuário do Github?
                     <input
-                        type='url'
+                        type='text'
                         value={state.github}
                         onChange={handleGithubChange}
+                        onKeyUp={handleEnter}
                     />
                 </label>
 
